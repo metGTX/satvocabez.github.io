@@ -1,20 +1,24 @@
 document.addEventListener('keydown', function(event) {
   if (event.code === 'Space') {
     console.log('Spacebar pressed!');
-    let randomWord = words[Math.floor(Math.random() * words.length)];
-    let keywordsForWord = wordKeywords[randomWord];
-    let userInput = window.prompt(randomWord)
-
-    if (!userInput) {
-      return; 
-    }
     
+    let randomWord = words[Math.floor(Math.random() * words.length)];
+
+    let keywordsForWord = wordKeywords[randomWord];
+
+    let userInput = window.prompt(randomWord);
+    if (!userInput) return;
+
     let lower = userInput.trim().toLowerCase();
-    let isCorrect = keywordsForWord.some(k => 
-      k.toLowerCase() === lower
-    );
+
+    let isCorrect = keywordsForWord.some(k => {
+      let pattern = new RegExp(`\\b${k.toLowerCase()}\\b`);
+      return pattern.test(lower);
+    });
+
     event.preventDefault();
- if (isCorrect) {
+
+    if (isCorrect) {
       correctAudio();
       alert("Correct!");
     } else {
@@ -251,6 +255,7 @@ const wordKeywords = {
   "Lethargic": ["Sluggish", "tired", "lazy", "slow", "inactive", "sleepy"],
   "Postulate": ["Assume", "suggest", "claim", "theory", "propose", "posit"]
 };
+
 
 
 
