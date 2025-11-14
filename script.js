@@ -20,10 +20,10 @@ document.addEventListener('keydown', function(event) {
 
     if (isCorrect) {
       correctAudio();
-      alert("Correct!");
+      alert("correct, you smart nigger");
     } else {
       incorrectAudio();
-      alert("Incorrect!");
+      alert("wrong you stupid nigger");
     }
   }
 });
@@ -233,6 +233,7 @@ const wordKeywords = {
   "Lethargic": ["Sluggish", "tired", "lazy", "slow", "inactive", "sleepy"],
   "Postulate": ["Assume", "suggest", "claim", "theory", "propose", "posit"]
 };
+
 
 
 
