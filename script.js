@@ -26,15 +26,15 @@ document.addEventListener('keydown', function(event) {
 
 // plays when user gets word incorrect or correct
 function incorrectAudio() {
-      const audio = new Audio('https://od.lk/f/NzJfNDc5NzIwNjNf');
+      const audio = new Audio('https://od.lk/s/NzJfNDc5NzIwNjNf/Fahh%20Sound%20Effect.mp3');
       audio.play();
     }
 function incorrectAudio2() {
-      const audio = new Audio('https://od.lk/f/NzJfNDc5NzIwNzFf');
+      const audio = new Audio('https://od.lk/s/NzJfNDc5NzIwNzFf/Vine%20boom%20sound%20effect.mp3');
       audio.play();
     }
 function correctAudio() {
-      const audio = new Audio('https://od.lk/f/NzJfNDc5NzIwNzBf');
+      const audio = new Audio('https://od.lk/s/NzJfNDc5NzIwNzBf/Wow%20sound%20effect.mp3');
       audio.play();  
     }
 
@@ -229,4 +229,5 @@ const wordKeywords = {
   "Lethargic": ["Sluggish", "tired", "lazy", "slow", "inactive", "sleepy"],
   "Postulate": ["Assume", "suggest", "claim", "theory", "propose", "posit"]
 };
+
 
