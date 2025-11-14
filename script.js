@@ -7,6 +7,17 @@ document.addEventListener('keydown', function(event) {
   }
 });
 
+// plays when user gets word incorrect
+function incorrectAudio() {
+      const audio = new Audio('https://od.lk/f/NzJfNDc5NzIwNjNf');
+    }
+function incorrectAudio2() {
+      const audio = new Audio('https://od.lk/f/NzJfNDc5NzIwNzFf');
+    }
+function correctAudio() {
+      const audio = new Audio('https://od.lk/f/NzJfNDc5NzIwNzBf');
+    }
+
 const words = [
   "Assets","Elicits","Illicit","Assertive","Dichotomy","Prejudice","Deliberate",
   "Deplete","Tapestry","Abstract","Endemic","Sparse","Immaculate","Intricate",
@@ -33,5 +44,6 @@ const words = [
   "Perfunctory","Incessant","Aspire","Vilify","Reticent","Inept","Fortuitous",
   "Lethargic","Postulate"
 ];
+
 
 
