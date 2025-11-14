@@ -36,7 +36,29 @@ function incorrectAudio2() {
 function correctAudio() {
       const audio = new Audio('https://od.lk/s/NzJfNDc5NzIwNzBf/Wow%20sound%20effect.mp3');
       audio.play();  
-    }
+    }\
+
+//LOAD AUDIO (MOBILE ONLY)
+window.addEventListener("click", () => {
+  incorrect1.muted = true;
+  incorrect2.muted = true;
+  correct.muted = true;
+
+  incorrect1.play();
+  incorrect2.play();
+  correct.play();
+
+  setTimeout(() => {
+    incorrect1.pause();
+    incorrect2.pause();
+    correct.pause();
+
+    incorrect1.muted = false;
+    incorrect2.muted = false;
+    correct.muted = false;
+  }, 50);
+}, { once: true });
+
 
 const words = [
   "Assets","Elicits","Illicit","Assertive","Dichotomy","Prejudice","Deliberate",
@@ -66,7 +88,7 @@ const words = [
 ];
 
 const wordKeywords = {
-  "Assets": ["Property", "possessions", "value", "resource", "advantage", "wealth"],
+  "Assets": ["Property", "possessions", "value", "resource", "advantage", "wealth", "benefits"],
   "Elicits": ["Evoke", "draw out", "extract", "obtain", "provoke", "response"],
   "Illicit": ["Illegal", "forbidden", "unlawful", "banned", "unauthorized", "criminal"],
   "Assertive": ["Confident", "forceful", "decisive", "bold", "positive", "self-assured"],
@@ -130,9 +152,9 @@ const wordKeywords = {
   "Visage": ["Face", "appearance", "countenance", "look", "expression", "features"],
   "Denounce": ["Condemn", "criticize", "accuse", "blame", "censure", "declare"],
   "Lament": ["Mourn", "grieve", "regret", "sorrow", "weep", "wail"],
-  "Dogmatic": ["Opinionated", "rigid", "assertive", "doctrinal", "inflexible", "absolute"],
+  "Dogmatic": ["Opinionated", "rigid", "assertive", "doctrinal", "inflexible", "absolute", "opinion"],
   "Unpretentious": ["Modest", "simple", "humble", "plain", "natural", "genuine"],
-  "Ambiguous": ["Unclear", "vague", "open", "double meaning", "uncertain", "obscure"],
+  "Ambiguous": ["Unclear", "vague", "open", "double meaning", "uncertain", "obscure", "mixed feelings"],
   "Intrinsic": ["Inherent", "essential", "natural", "built-in", "fundamental", "internal"],
   "Elated": ["Happy", "overjoyed", "thrilled", "delighted", "euphoric", "jubilant"],
   "Venerate": ["Respect", "worship", "revere", "honor", "admire", "esteem"],
@@ -216,7 +238,7 @@ const wordKeywords = {
   "Elide": ["Omit", "cut", "leave out", "merge", "suppress", "ignore"],
   "Evinced": ["Showed", "revealed", "demonstrated", "displayed", "proved", "evidence"],
   "Innocuous": ["Harmless", "safe", "innocent", "inoffensive", "mild", "bland"],
-  "Labyrinthine": ["Complicated", "maze-like", "twisting", "confusing", "complex", "winding"],
+  "Labyrinthine": ["Complicated", "maze-like", "twisting", "confusing", "complex", "winding", "labyrinth"],
   "Spurious": ["Fake", "false", "counterfeit", "bogus", "invalid", "phony"],
   "Dissonance": ["Discord", "clash", "conflict", "noise", "lack of harmony", "disagreement"],
   "Perfunctory": ["Routine", "automatic", "careless", "superficial", "indifferent", "mechanical"],
@@ -229,5 +251,6 @@ const wordKeywords = {
   "Lethargic": ["Sluggish", "tired", "lazy", "slow", "inactive", "sleepy"],
   "Postulate": ["Assume", "suggest", "claim", "theory", "propose", "posit"]
 };
+
 
 
