@@ -40,7 +40,7 @@ function incorrectAudio2() {
 function correctAudio() {
       const audio = new Audio('https://od.lk/s/NzJfNDc5NzIwNzBf/Wow%20sound%20effect.mp3');
       audio.play();  
-    }\
+    }
 
 const words = [
   "Assets","Elicits","Illicit","Assertive","Dichotomy","Prejudice","Deliberate",
