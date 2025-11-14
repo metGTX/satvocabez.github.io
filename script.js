@@ -1,3 +1,7 @@
+const correctSound = new Audio('https://od.lk/s/NzJfNDc5NzIwNzBf/Wow%20sound%20effect.mp3');
+const incorrectSound = new Audio('https://od.lk/s/NzJfNDc5NzIwNjNf/Fahh%20Sound%20Effect.mp3');
+const incorrectSound2 = new Audio('https://od.lk/s/NzJfNDc5NzIwNzFf/Vine%20boom%20sound%20effect.mp3');
+
 document.addEventListener('keydown', function(event) {
   if (event.code === 'Space') {
     console.log('Spacebar pressed!');
@@ -30,16 +34,16 @@ document.addEventListener('keydown', function(event) {
 
 // plays when user gets word incorrect or correct
 function incorrectAudio() {
-      const audio = new Audio('https://od.lk/s/NzJfNDc5NzIwNjNf/Fahh%20Sound%20Effect.mp3');
-      audio.play();
+      incorrectSound.currentTime = 0;
+      incorrectSound.play();
     }
 function incorrectAudio2() {
-      const audio = new Audio('https://od.lk/s/NzJfNDc5NzIwNzFf/Vine%20boom%20sound%20effect.mp3');
-      audio.play();
+      incorrectSound2.currentTime = 0;
+      incorrectSound2.play();
     }
 function correctAudio() {
-      const audio = new Audio('https://od.lk/s/NzJfNDc5NzIwNzBf/Wow%20sound%20effect.mp3');
-      audio.play();  
+      correctSound.currentTime = 0;
+      correctSound.play();  
     }
 
 const words = [
@@ -233,6 +237,7 @@ const wordKeywords = {
   "Lethargic": ["Sluggish", "tired", "lazy", "slow", "inactive", "sleepy"],
   "Postulate": ["Assume", "suggest", "claim", "theory", "propose", "posit"]
 };
+
 
 
 
