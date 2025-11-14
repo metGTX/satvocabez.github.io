@@ -1,11 +1,7 @@
-document.addEventListener('keydown', function(event) {
-  if (event.code === 'Space') {
-    console.log('Spacebar pressed!');
-    let randomWord = words[Math.floor(Math.random() * words.length)];
-    let userInput = prompt(randomWord);
-    event.preventDefault();
-  }
-});
+let username;
+
+username = window.prompt("What's your name");
+
 
 const words = [
   "Assets","Elicits","Illicit","Assertive","Dichotomy","Prejudice","Deliberate",
@@ -33,3 +29,4 @@ const words = [
   "Perfunctory","Incessant","Aspire","Vilify","Reticent","Inept","Fortuitous",
   "Lethargic","Postulate"
 ];
+
