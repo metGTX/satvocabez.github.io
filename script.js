@@ -42,28 +42,6 @@ function correctAudio() {
       audio.play();  
     }\
 
-//LOAD AUDIO (MOBILE ONLY)
-window.addEventListener("click", () => {
-  incorrect1.muted = true;
-  incorrect2.muted = true;
-  correct.muted = true;
-
-  incorrect1.play();
-  incorrect2.play();
-  correct.play();
-
-  setTimeout(() => {
-    incorrect1.pause();
-    incorrect2.pause();
-    correct.pause();
-
-    incorrect1.muted = false;
-    incorrect2.muted = false;
-    correct.muted = false;
-  }, 50);
-}, { once: true });
-
-
 const words = [
   "Assets","Elicits","Illicit","Assertive","Dichotomy","Prejudice","Deliberate",
   "Deplete","Tapestry","Abstract","Endemic","Sparse","Immaculate","Intricate",
@@ -255,6 +233,7 @@ const wordKeywords = {
   "Lethargic": ["Sluggish", "tired", "lazy", "slow", "inactive", "sleepy"],
   "Postulate": ["Assume", "suggest", "claim", "theory", "propose", "posit"]
 };
+
 
 
 
