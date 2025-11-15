@@ -80,7 +80,7 @@ const wordKeywords = {
   "Assertive": ["Confident", "forceful", "decisive", "bold", "positive", "self-assured"],
   "Dichotomy": ["Division", "contrast", "split", "separation", "two parts", "difference"],
   "Prejudice": ["Bias", "unfairness", "intolerance", "discrimination", "preconceived judgment", "dislike"],
-  "Deliberate": ["Intentional", "planned", "careful", "thoughtful", "calculated", "purposeful"],
+  "Deliberate": ["Intentional", "planned", "careful", "thoughtful", "calculated", "purposeful", "purpose"],
   "Deplete": ["Exhaust", "empty", "reduce", "drain", "consume", "use up"],
   "Tapestry": ["Fabric", "complex", "weaving", "design", "pattern", "textile"],
   "Abstract": ["Theoretical", "conceptual", "non-concrete", "summary", "idea", "vague"],
@@ -137,11 +137,11 @@ const wordKeywords = {
   "Catalog": ["List", "record", "register", "inventory", "classify", "organize"],
   "Visage": ["Face", "appearance", "countenance", "look", "expression", "features"],
   "Denounce": ["Condemn", "criticize", "accuse", "blame", "censure", "declare"],
-  "Lament": ["Mourn", "grieve", "regret", "sorrow", "weep", "wail"],
+  "Lament": ["Mourn", "grieve", "regret", "sorrow", "weep", "wail", "grief"],
   "Dogmatic": ["Opinionated", "rigid", "assertive", "doctrinal", "inflexible", "absolute", "opinion"],
   "Unpretentious": ["Modest", "simple", "humble", "plain", "natural", "genuine"],
   "Ambiguous": ["Unclear", "vague", "open", "double meaning", "uncertain", "obscure", "mixed feelings"],
-  "Intrinsic": ["Inherent", "essential", "natural", "built-in", "fundamental", "internal"],
+  "Intrinsic": ["Inherent", "essential", "natural", "built-in", "fundamental", "internal", "naturally"],
   "Elated": ["Happy", "overjoyed", "thrilled", "delighted", "euphoric", "jubilant"],
   "Venerate": ["Respect", "worship", "revere", "honor", "admire", "esteem"],
   "Decadence": ["Decline", "decay", "corruption", "self-indulgence", "deterioration", "excess"],
@@ -237,6 +237,7 @@ const wordKeywords = {
   "Lethargic": ["Sluggish", "tired", "lazy", "slow", "inactive", "sleepy"],
   "Postulate": ["Assume", "suggest", "claim", "theory", "propose", "posit"]
 };
+
 
 
 
