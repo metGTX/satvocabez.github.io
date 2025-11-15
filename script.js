@@ -276,10 +276,12 @@ document.addEventListener('DOMContentLoaded', () => {
         guessInput.value = "";
       }
 
-      if (event.code === 'Space') {
-        event.preventDefault();
-        console.log('Spacebar pressed');
-        getNewWord();
+     if (event.code === 'Space') {
+        if (event.target !== guessInput) {
+          event.preventDefault();
+          console.log('Spacebar pressed (not in input)');
+          getNewWord();
+        }
       }
     });
   } catch (err) {
