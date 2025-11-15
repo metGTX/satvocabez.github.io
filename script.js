@@ -1,52 +1,12 @@
-const correctSound = new Audio('https://od.lk/s/NzJfNDc5NzIwNzBf/Wow%20sound%20effect.mp3');
-const incorrectSound = new Audio('https://od.lk/s/NzJfNDc5NzIwNjNf/Fahh%20Sound%20Effect.mp3');
-const incorrectSound2 = new Audio('https://od.lk/s/NzJfNDc5NzIwNzFf/Vine%20boom%20sound%20effect.mp3');
+document.addEventListener('DOMContentLoaded', () => {
+  try {
+    // FUNNY AUDIOS
+    const correctSound = new Audio('https://od.lk/s/NzJfNDc5NzIwNzBf/Wow%20sound%20effect.mp3');
+    const incorrectSound = new Audio('https://od.lk/s/NzJfNDc5NzIwNjNf/Fahh%20Sound%20Effect.mp3');
+    const incorrectSound2 = new Audio('https://od.lk/s/NzJfNDc5NzIwNzFf/Vine%20boom%20sound%20effect.mp3');
 
-document.addEventListener('keydown', function(event) {
-  if (event.code === 'Space') {
-    console.log('Spacebar pressed!');
-    
-    let randomWord = words[Math.floor(Math.random() * words.length)];
-
-    let keywordsForWord = wordKeywords[randomWord];
-
-    let userInput = window.prompt(randomWord);
-    if (!userInput) return;
-
-    let lower = userInput.trim().toLowerCase();
-
-    let isCorrect = keywordsForWord.some(k => {
-      let pattern = new RegExp(`\\b${k.toLowerCase()}\\b`);
-      return pattern.test(lower);
-    });
-
-    event.preventDefault();
-
-    if (isCorrect) {
-      correctAudio();
-      alert("correct, you smart nigger");
-    } else {
-      incorrectAudio();
-      alert("wrong you stupid nigger");
-    }
-  }
-});
-
-// plays when user gets word incorrect or correct
-function incorrectAudio() {
-      incorrectSound.currentTime = 0;
-      incorrectSound.play();
-    }
-function incorrectAudio2() {
-      incorrectSound2.currentTime = 0;
-      incorrectSound2.play();
-    }
-function correctAudio() {
-      correctSound.currentTime = 0;
-      correctSound.play();  
-    }
-
-const words = [
+    // words and keywords
+    const words = [
   "Assets","Elicits","Illicit","Assertive","Dichotomy","Prejudice","Deliberate",
   "Deplete","Tapestry","Abstract","Endemic","Sparse","Immaculate","Intricate",
   "Broad","Tangible","Linguistics","Diligent","Desecration","Rampant","Unionize",
@@ -72,8 +32,7 @@ const words = [
   "Perfunctory","Incessant","Aspire","Vilify","Reticent","Inept","Fortuitous",
   "Lethargic","Postulate"
 ];
-
-const wordKeywords = {
+    const wordKeywords = {
   "Assets": ["Property", "possessions", "value", "resource", "advantage", "wealth", "benefits"],
   "Elicits": ["Evoke", "draw out", "extract", "obtain", "provoke", "response"],
   "Illicit": ["Illegal", "forbidden", "unlawful", "banned", "unauthorized", "criminal"],
@@ -237,11 +196,93 @@ const wordKeywords = {
   "Lethargic": ["Sluggish", "tired", "lazy", "slow", "inactive", "sleepy"],
   "Postulate": ["Assume", "suggest", "claim", "theory", "propose", "posit"]
 };
+  
+    const guessInput = document.getElementById("guess");
+    const placeholder = document.getElementById("placeholder");
 
+    if (!guessInput || !placeholder) {
+      console.error("Missing DOM elements: #guess or #placeholder not found.");
+      return; 
+    }
 
+    let currentWord = "";
 
+    function incorrectAudio() {
+      incorrectSound.currentTime = 0;
+      incorrectSound.play().catch(e => console.warn("Audio play suppressed:", e));
+    }
+    function incorrectAudio2() {
+      incorrectSound2.currentTime = 0;
+      incorrectSound2.play().catch(e => console.warn("Audio play suppressed:", e));
+    }
+    function correctAudio() {
+      correctSound.currentTime = 0;
+      correctSound.play().catch(e => console.warn("Audio play suppressed:", e));
+    }
 
+    function getNewWord() {
+      if (!Array.isArray(words) || words.length === 0) {
+        console.error("words array is empty or missing.");
+        return;
+      }
+      currentWord = words[Math.floor(Math.random() * words.length)];
+      placeholder.textContent = currentWord;
+      console.log('New word:', currentWord);
+    }
 
+    window.getNewWord = getNewWord;
 
+    document.addEventListener('keydown', function(event) {
+      if (event.code === 'Enter') {
+        event.preventDefault();
+        const userInput = guessInput.value.trim().toLowerCase();
+        if (!userInput) {
+          alert("type a letter you PUSSY");
+          return;
+        }
+        if (!currentWord) {
+          alert("press space to enter a word");
+          guessInput.value = "";
+          return;
+        }
 
+        console.log('Input logged', userInput);
 
+        const keywordsForWord = wordKeywords[currentWord];
+        if (!Array.isArray(keywordsForWord)) {
+          console.warn("No keywords for", currentWord);
+          incorrectAudio();
+          alert("Wrong");
+          guessInput.value = "";
+          return;
+        }
+
+        // match ignoring case and allowing words/phrases
+        const isCorrect = keywordsForWord.some(k => {
+          const escaped = k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          const pattern = new RegExp(`\\b${escaped.toLowerCase()}\\b`);
+          return pattern.test(userInput);
+        });
+
+        if (isCorrect) {
+          correctAudio();
+          alert("Bravo");
+          getNewWord();
+        } else {
+          incorrectAudio();
+          alert("Wrong");
+        }
+
+        guessInput.value = "";
+      }
+
+      if (event.code === 'Space') {
+        event.preventDefault();
+        console.log('Spacebar pressed');
+        getNewWord();
+      }
+    });
+  } catch (err) {
+    console.error("Script initialization error:", err);
+  }
+});
