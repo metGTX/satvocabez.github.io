@@ -216,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 var NO = document.getElementById('WRONG');
 var RIGHT = document.getElementById('GOOD');
-
+var numofWords = document.getElementById('numWords');
 
 // MOBILE SUPPORT
 document.addEventListener("click", function (e) {
@@ -313,6 +313,7 @@ function fade(element) {
             user.includes(k.toLowerCase())
         );
         if (isCorrect) {
+  numofWords.textContent = `${parseInt(numofWords.textContent) + 1} words correct`;
   const chance2 = Math.random();
   
   // 30% chance to play the ANIME AHH sound
