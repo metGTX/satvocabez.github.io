@@ -209,6 +209,15 @@ document.addEventListener('DOMContentLoaded', () => {
 var NO = document.getElementById('WRONG');
 var RIGHT = document.getElementById('GOOD');
 
+
+// MOBILE SUPPORT
+document.addEventListener("click", function (e) {
+  // Don't trigger if user clicked the input box
+  if (e.target.id === "guess") return;
+  getNewWord();
+});
+
+
 function fadeOut() {
     var intervalID = setInterval(function () {
     
@@ -266,6 +275,10 @@ function fadeOut2() {
       correctSound.currentTime = 0;
       correctSound.play().catch(e => console.warn("Audio play suppressed:", e));
     }
+    function correctAudio2() {
+      correctSound.currentTime = 0;
+      correctSound.play().catch(e => console.warn("Audio play suppressed:", e));
+    }
 
     function getNewWord() {
       if (!Array.isArray(words) || words.length === 0) {
@@ -305,20 +318,18 @@ function fadeOut2() {
         }
 
         // match ignoring case and allowing words/phrases
-        const isCorrect = keywordsForWord.some(k => {
-          const escaped = k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-          const pattern = new RegExp(`\\b${escaped.toLowerCase()}\\b`);
-          return pattern.test(userInput);
-        });
-
+        const user = userInput.toLowerCase();
+        const isCorrect = keywordsForWord.some(k =>
+            user.includes(k.toLowerCase())
+        );
         if (isCorrect) {
   const chance2 = Math.random();
   
   // 30% chance to play the ANIME AHH sound
   if (chance2 < 0.3) {
-    correctAudio2();
-  } else {
     correctAudio();
+  } else {
+    correctAudio2();
   }
 
   RIGHT.style.opacity = 1;
