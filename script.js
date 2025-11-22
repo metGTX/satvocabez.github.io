@@ -6,6 +6,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const incorrectSound = new Audio('https://od.lk/s/NzJfNDc5NzIwNjNf/Fahh%20Sound%20Effect.mp3');
     const incorrectSound2 = new Audio('https://od.lk/s/NzJfNDc5NzIwNzFf/Vine%20boom%20sound%20effect.mp3');
 
+  // 2. Force Preloading
+    const allSounds = [correctSound, correctSound2, incorrectSound, incorrectSound2];
+
+    allSounds.forEach(sound => {
+      sound.preload = 'auto'; // Tells browser to download immediately
+      sound.load();           // Forces the request to start now
+});
+
     // words and keywords
     const words = [
   "Assets","Elicits","Illicit","Assertive","Dichotomy","Prejudice","Deliberate",
@@ -118,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
   "Incidence": ["Rate", "occurrence", "frequency", "event", "instance", "amount"],
   "Incisive": ["Sharp", "keen", "cutting", "acute", "penetrating", "analytical"],
   "Inept": ["Clumsy", "unskilled", "incompetent", "awkward", "useless", "unfit"],
-  "Infiltration": ["Penetration", "entry", "access", "sneaking", "invasion", "pervade"],
+  "Infiltration": ["Penetration", "entry", "access", "sneaking", "invasion", "pervade", "passing", "through"],
   "Innocuous": ["Harmless", "safe", "innocent", "inoffensive", "mild", "bland"],
   "Inoculate": ["Vaccinate", "immunize", "protect", "inoculation", "inject", "prevent"],
   "Insidious": ["Treacherous", "subtle", "harmful", "deceitful", "sneaky", "dangerous"],
@@ -180,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
   "Symbiotic": ["Mutually beneficial", "cooperative", "interdependent", "relationship", "shared", "joint"],
   "Synopsis": ["Summary", "outline", "overview", "abstract", "digest", "review"],
   "Tacitly": ["Silently", "implicitly", "understood", "unspoken", "agreed", "hinted"],
-  "Tangible": ["Touchable", "real", "concrete", "physical", "palpable", "substantial"],
+  "Tangible": ["Touchable", "real", "concrete", "physical", "palpable", "substantial", "can be touched", "can be felt"],
   "Tapestry": ["Fabric", "complex", "weaving", "design", "pattern", "textile"],
   "Taxing": ["Demanding", "difficult", "exhausting", "burdensome", "tiring", "stressful"],
   "Tenacity": ["Persistence", "determination", "grip", "strength", "stubbornness", "resolve"],
@@ -189,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
   "Toil": ["Work", "labor", "struggle", "effort", "exhaust", "drudgery"],
   "Travesty": ["Mockery", "parody", "distortion", "caricature", "farce", "absurdity", "distortion", "mock", "ridicule", "false"],
   "Turpitude": ["Wickedness", "depravity", "corruption", "evil", "vile", "immorality"],
-  "Ubiquitously": ["Everywhere", "universally", "commonly", "omnipresently", "all over", "widespread"],
+  "Ubiquitously": ["Everywhere", "universally", "commonly", "omnipresently", "all over", "widespread", "common"],
   "Ultimatum": ["Demand", "final", "threat", "condition", "warning", "last offer"],
   "Unionize": ["Organize", "join", "labor", "association", "workers", "collective"],
   "Unpretentious": ["Modest", "simple", "humble", "plain", "natural", "genuine"],
@@ -218,40 +226,22 @@ document.addEventListener("click", function (e) {
 });
 
 
-function fadeOut() {
-    var intervalID = setInterval(function () {
-    
-    if (!NO.style.opacity) {
-        NO.style.opacity = 1;
-    }
-  
-    if (NO.style.opacity > 0) {
-        NO.style.opacity -= 0.2;
-    }
-    
-    else {
-        clearInterval(intervalID);
-    }
-    
-        }, 100);
-    }
-function fadeOut2() {
-    var intervalID = setInterval(function () {
-    
-    if (!RIGHT.style.opacity) {
-        RIGHT.style.opacity = 1;
-    }
-  
-    if (RIGHT.style.opacity > 0) {
-        RIGHT.style.opacity -= 0.1;
-    }
-    
-    else {
-        clearInterval(intervalID);
-    }
-    
-        }, 100);
-    }
+function fade(element) {
+    element.classList.remove("hide");
+    element.classList.add("show");
+    setTimeout(() => {
+        element.classList.remove("show");
+        element.classList.add("hide");
+        setTimeout(() => {
+            if (!element.classList.contains("show")) {
+                element.style.display = "none";
+            }
+        }, 500); // match CSS fade-out speed
+
+    }, 300); // how long it stays fully visible
+}
+
+
 
     const guessInput = document.getElementById("guess");
     const placeholder = document.getElementById("placeholder");
@@ -271,11 +261,11 @@ function fadeOut2() {
       incorrectSound2.currentTime = 0;
       incorrectSound2.play().catch(e => console.warn("Audio play suppressed:", e));
     }
-    function correctAudio() {
-      correctSound.currentTime = 0;
-      correctSound.play().catch(e => console.warn("Audio play suppressed:", e));
-    }
     function correctAudio2() {
+      correctSound2.currentTime = 0;
+      correctSound2.play().catch(e => console.warn("Audio play suppressed:", e));
+    }
+    function correctAudio() {
       correctSound.currentTime = 0;
       correctSound.play().catch(e => console.warn("Audio play suppressed:", e));
     }
@@ -327,14 +317,14 @@ function fadeOut2() {
   
   // 30% chance to play the ANIME AHH sound
   if (chance2 < 0.3) {
-    correctAudio();
-  } else {
-    correctAudio2();
-  }
+    correctAudio2();  
+} else {
+    correctAudio(); 
+}
 
   RIGHT.style.opacity = 1;
   RIGHT.style.display = 'block';
-  fadeOut2();
+  fade(RIGHT);
   getNewWord();
 } else {
   const chance = Math.random();
@@ -348,7 +338,7 @@ function fadeOut2() {
 
   NO.style.opacity = 1;
   NO.style.display = 'block';
-  fadeOut();
+  fade(NO);
 }
 
         guessInput.value = "";
