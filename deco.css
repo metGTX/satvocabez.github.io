@@ -27,3 +27,9 @@ label {
   text-align: center;
 }
 
+#WRONG {
+  display: none;
+}
+#GOOD {
+  display: none;
+}
