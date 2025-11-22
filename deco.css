@@ -1,5 +1,5 @@
 body {
-  background-color: red; 
+  background-color: rgb(192, 75, 75); 
 }
 
 h1 {
@@ -27,9 +27,17 @@ label {
   text-align: center;
 }
 
-#WRONG {
-  display: none;
+#WRONG, #GOOD {
+    opacity: 0;
+    transition: opacity 1s ease;
+    display: none;
 }
-#GOOD {
-  display: none;
+
+.show {
+    display: block !important;
+    opacity: 1 !important;
+}
+
+.hide {
+    opacity: 0 !important;
 }
