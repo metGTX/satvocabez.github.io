@@ -5,9 +5,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const correctSound2 = new Audio('https://od.lk/s/NzJfNDc5ODE2MzNf/anime-ahh.mp3');
     const incorrectSound = new Audio('https://od.lk/s/NzJfNDc5NzIwNjNf/Fahh%20Sound%20Effect.mp3');
     const incorrectSound2 = new Audio('https://od.lk/s/NzJfNDc5NzIwNzFf/Vine%20boom%20sound%20effect.mp3');
-
+    const streak1Music = new Audio('https://od.lk/s/NzJfNDc5ODE5NDFf/streakMusic1.mp3');
+    const streak2Music = new Audio('https://od.lk/s/NzJfNDc5ODE5NDVf/streakMusic2.mp3');
+    const streak3Music = new Audio('https://od.lk/s/NzJfNDc5ODE5NDNf/streakMusic3.mp3');
+    streak1Music.volume = 0.5; 
+    streak2Music.volume = 0.5; 
+    streak3Music.volume = 0.5; 
   // 2. Force Preloading
-    const allSounds = [correctSound, correctSound2, incorrectSound, incorrectSound2];
+    const allSounds = [correctSound, correctSound2, incorrectSound, incorrectSound2, streak1Music, streak2Music, streak3Music];
 
     allSounds.forEach(sound => {
       sound.preload = 'auto'; // Tells browser to download immediately
@@ -39,73 +44,79 @@ document.addEventListener('DOMContentLoaded', () => {
   "Insipid","Frugal","Impetuous","Esoteric","Eclectic","Egregious","Convergence",
   "Turpitude","Elide","Evinced","Innocuous","Labyrinthine","Spurious","Dissonance",
   "Perfunctory","Incessant","Aspire","Vilify","Reticent","Inept","Fortuitous",
-  "Lethargic","Postulate","Extol","Hapless","Inoculate","Phlegmatic","Philanthropic","Travesty","Tirade","Zephyr"
+  "Lethargic","Postulate","Extol","Hapless","Inoculate","Phlegmatic","Philanthropic",
+  "Travesty","Tirade","Zephyr","Sagacity", "Tenacious","Surreptitious","Mundane","Deleterious",
+  "Conundrum","Arid","Abate"
 ];
     const wordKeywords = {
+  "Abate": ["Reduce", "lessen", "diminish", "decrease", "subside", "wane", "waver", "decrease","weaken", "intensity", "decline"],   
   "Abdicate": ["Resign", "give up", "renounce", "step down", "surrender", "quit"],
-  "Abridge": ["Shorten", "condense", "cut", "abbreviate", "reduce", "summary"],
-  "Abstract": ["Theoretical", "conceptual", "non-concrete", "summary", "idea", "vague"],
+  "Abridge": ["Shorten", "condense", "cut", "abbreviate", "reduce", "summary", "reduction", "short"],
+  "Abstract": ["Theoretical", "conceptual", "non-concrete", "summary", "idea", "vague", "concept", "theory"],
   "Affable": ["Friendly", "pleasant", "easygoing", "approachable", "sociable", "amiable"],
-  "Aggregate": ["Total", "combined", "collection", "sum", "whole", "mass"],
+  "Aggregate": ["Total", "combined", "collection", "sum", "whole", "mass", "combine", "combined", "together"],
   "Altruistic": ["Selfless", "unselfish", "kind", "charitable", "generous", "humane"],
-  "Ambiguous": ["Unclear", "vague", "open", "double meaning", "uncertain", "obscure", "mixed feelings"],
-  "Ambivalent": ["Uncertain", "mixed feelings", "undecided", "conflicting", "doubtful", "wavering"],
+  "Ambiguous": ["Unclear", "vague", "open", "double meaning", "uncertain", "obscure", "double edged"],
+  "Ambivalent": ["Uncertain", "mixed feelings", "undecided", "conflicting", "doubtful", "wavering", "mixed"],
   "Ameliorate": ["Improve", "better", "help", "enhance", "relieve", "alleviate"],
-  "Amnesty": ["Pardon", "forgiveness", "immunity", "reprieve", "release", "absolution"],
-  "Anachronistic": ["Outdated", "old-fashioned", "misplaced", "wrong time", "obsolete", "antique"],
+  "Amnesty": ["Pardon", "forgiveness", "immunity", "reprieve", "release", "absolution", "resolve", "fix", "fixing", "solution"],
+  "Anachronistic": ["Outdated", "old-fashioned", "misplaced", "wrong time", "obsolete", "antique", "dated"],
   "Anthology": ["Collection", "compilation", "selection", "treasury", "digest", "literary"],
   "Anthropology": ["Humans", "culture", "society", "study", "development", "mankind"],
   "Apathy": ["Indifference", "lack of interest", "unconcern", "emotionless", "listlessness", "numbness"],
   "Arduous": ["Difficult", "hard", "strenuous", "tiring", "laborious", "exhausting"],
-  "Aspire": ["Aim", "hope", "desire", "seek", "ambition", "goal"],
-  "Assertive": ["Confident", "forceful", "decisive", "bold", "positive", "self-assured"],
+  "Arid": ["Dry", "barren", "desert", "parched", "waterless", "infertile", "lacking interest", "indifferent", "bored", "indifferent", "interest"],
+  "Aspire": ["Aim", "hope", "desire", "seek", "ambition", "goal", "strive", "striving"],
+  "Assertive": ["Confident", "forceful", "decisive", "bold", "positive", "self-assured", "dominant", "dominance"],
   "Assets": ["Property", "possessions", "value", "resource", "advantage", "wealth", "benefits"],
   "Authentic": ["Real", "genuine", "true", "original", "valid", "actual"],
-  "Belie": ["Contradict", "disguise", "misrepresent", "false", "hide", "negate"],
+  "Belie": ["Contradict", "disguise", "misrepresent", "false", "hide", "negate", "faking", "fake"],
   "Belligerent": ["Hostile", "aggressive", "warlike", "combative", "fighting", "threatening"],
   "Boorish": ["Rude", "rough", "insensitive", "bad-mannered", "coarse", "uncouth"],
   "Broad": ["Wide", "large", "general", "vast", "extensive", "open", "big"],
-  "Cacophony": ["Noise", "discord", "harshness", "racket", "din", "clamor"],
+  "Cacophony": ["Noise", "discord", "harshness", "racket", "din", "clamor", "harsh", "loud", "noisy"],
   "Calamitous": ["Disastrous", "catastrophic", "tragic", "devastating", "ruinous", "fatal"],
-  "Candor": ["Honesty", "frankness", "openness", "truthfulness", "sincerity", "directness"],
+  "Candor": ["Honesty", "frankness", "openness", "truthfulness", "sincerity", "directness", "honest", "truth"],
   "Cascade": ["Waterfall", "pour", "flow", "series", "succession", "tumble"],
   "Catalog": ["List", "record", "register", "inventory", "classify", "organize"],
-  "Collude": ["Conspire", "plot", "scheme", "cooperate", "secret", "deceit"],
-  "Conceivable": ["Possible", "imaginable", "believable", "thinkable", "credible", "plausible"],
+  "Collude": ["Conspire", "plot", "scheme", "cooperate", "secret", "deceit", "cheating"],
+  "Conceivable": ["Possible", "imaginable", "believable", "thinkable", "credible", "plausible", "imagine", "imagined", "picture", "pictured"],
+  "Conundrum": ["Puzzle", "riddle", "enigma", "problem", "mystery", "dilemma", "confusing", "difficult", "tricky"],
   "Convergence": ["Meeting", "joining", "merging", "union", "coming together", "junction"],
   "Convoluted": ["Complicated", "twisted", "complex", "intricate", "involved", "tangled"],
   "Corroborate": ["Confirm", "verify", "support", "prove", "validate", "authenticate"],
   "Dearth": ["Scarcity", "lack", "shortage", "absence", "deficiency", "famine"],
   "Decadence": ["Decline", "decay", "corruption", "self-indulgence", "deterioration", "excess"],
+  "Deleterious": ["Harmful", "damaging", "injurious", "detrimental", "dangerous", "destructive", "harm"],
   "Deliberate": ["Intentional", "planned", "careful", "thoughtful", "calculated", "purposeful", "purpose"],
   "Denounce": ["Condemn", "criticize", "accuse", "blame", "censure", "declare"],
-  "Deplete": ["Exhaust", "empty", "reduce", "drain", "consume", "use up"],
-  "Derived": ["Obtained", "originating", "sourced", "drawn", "extracted", "traced"],
+  "Deplete": ["Exhaust", "empty", "reduce", "drain", "consume", "use up", "decrease"],
+  "Derived": ["Obtained", "originating", "sourced", "drawn", "extracted", "traced", "origin", "source", "originated"],
   "Desecration": ["Violation", "disrespect", "profanity", "ruin", "sacrilege", "blasphemy"],
   "Destitute": ["Poor", "impoverished", "lacking", "needy", "penniless", "indigent"],
   "Detrimental": ["Harmful", "damaging", "injurious", "negative", "hurtful", "destructive"],
-  "Dichotomy": ["Division", "contrast", "split", "separation", "two parts", "difference"],
-  "Diligent": ["Hardworking", "careful", "thorough", "persistent", "assiduous", "industrious"],
-  "Dirge": ["Song", "mournful", "funeral", "sad", "lament", "hymn"],
+  "Dichotomy": ["Division", "contrast", "split", "separation", "two parts", "difference", "halved", "divided"],
+  "Diligent": ["Hardworking", "careful", "thorough", "persistent", "assiduous", "industrious", "Hard-working"],
+  "Dirge": ["Song", "mournful", "funeral", "sad", "lament", "hymn", "mourn"],
   "Dispel": ["Drive away", "scatter", "eliminate", "banish", "disperse", "resolve", "disappear"],
-  "Dissonance": ["Discord", "clash", "conflict", "noise", "lack of harmony", "disagreement"],
+  "Dissonance": ["Discord", "clash", "conflict", "noise", "lack of harmony", "disagreement", "lack of sync", "sync"],
   "Dogmatic": ["Opinionated", "rigid", "assertive", "doctrinal", "inflexible", "absolute", "opinion"],
   "Eclectic": ["Diverse", "varied", "broad", "mixed", "wide-ranging", "assorted"],
-  "Efficacy": ["Effectiveness", "power", "ability", "success", "capability", "potency"],
-  "Egregious": ["Shocking", "bad", "terrible", "flagrant", "outrageous", "glaring"],
+  "Efficacy": ["Effectiveness", "power", "ability", "success", "capability", "potency", "potent", "powerful"],
+  "Egregious": ["Shocking", "bad", "terrible", "flagrant", "outrageous", "glaring", "bad", "extremely"],
   "Elated": ["Happy", "overjoyed", "thrilled", "delighted", "euphoric", "jubilant"],
-  "Elide": ["Omit", "cut", "leave out", "merge", "suppress", "ignore"],
+  "Elide": ["Omit", "cut", "leave out", "merge", "suppress", "ignore", "ignore"],
   "Elicits": ["Evoke", "draw out", "extract", "obtain", "provoke", "response"],
-  "Elucidate": ["Explain", "clarify", "clear up", "illustrate", "illuminate", "define"],
+  "Elucidate": ["Explain", "clarify", "clear up", "illustrate", "illuminate", "define", "clear"],
   "Empirical": ["Observed", "factual", "experimental", "practical", "evidence-based", "real"],
-  "Endemic": ["Native", "local", "restricted", "characteristic", "indigenous", "regional"],
+  "Endemic": ["Native", "local", "restricted", "characteristic", "indigenous", "regional", "ordinary", "common", "regular"],
   "Enigma": ["Puzzle", "mystery", "riddle", "secret", "confusing", "inexplicable", "mysterious"],
   "Enterprise": ["Business", "venture", "project", "initiative", "undertaking", "company"],
   "Eschew": ["Avoid", "shun", "give up", "abstain", "escape", "refrain"],
-  "Esoteric": ["Secret", "obscure", "understood by few", "hidden", "mysterious", "private"],
-  "Evinced": ["Showed", "revealed", "demonstrated", "displayed", "proved", "evidence"],
-  "Evocation": ["Calling forth", "memory", "feeling", "summon", "produce", "elicit"],
-  "Exacerbate": ["Worsen", "aggravate", "intensify", "inflame", "irritate", "provoke"],
+  "Esoteric": ["Secret", "obscure", "understood by few", "hidden", "mysterious", "private", "not understood"],
+  "Evinced": ["Showed", "revealed", "demonstrated", "displayed", "proved", "evidence", "reveal", "show"],
+  "Evocation": ["Calling forth", "memory", "feeling", "summon", "produce", "elicit", "evoke", "evoking"],
+  "Exacerbate": ["Worsen", "aggravate", "intensify", "inflame", "irritate", "provoke", "make something worse"],
   "Exorbitant": ["Excessive", "high", "expensive", "unreasonable", "inflated", "steep", "worse"],
   "Extol": ["Praised", "lauded", "celebrated", "admired", "honored", "acclaimed"],
   "Expedite": ["Speed up", "hasten", "accelerate", "rush", "facilitate", "advance"],
@@ -115,21 +126,21 @@ document.addEventListener('DOMContentLoaded', () => {
   "Frugal": ["Thrifty", "economical", "saving", "careful", "sparing", "cheap"],
   "Hackneyed": ["Overused", "stale", "cliché", "common", "trite", "banal"],
   "Hapless": ["Unfortunate", "unlucky", "miserable", "woeful", "ill-fated", "cursed", "pity", "bad luck"],
-  "Heinous": ["Wicked", "evil", "atrocious", "hateful", "abominable", "monstrous"],
-  "Heretical": ["Unorthodox", "dissenting", "radical", "contrary", "blasphemous", "nonconformist"],
+  "Heinous": ["Wicked", "evil", "atrocious", "hateful", "abominable", "monstrous", "criminal", "crimes", "horrible", "horrific"],
+  "Heretical": ["Unorthodox", "dissenting", "radical", "contrary", "blasphemous", "nonconformist", "belief", "believing", "odds"],
   "Homogenization": ["Uniform", "same", "blending", "mixing", "standardizing", "similar"],
   "Illicit": ["Illegal", "forbidden", "unlawful", "banned", "unauthorized", "criminal"],
   "Immaculate": ["Spotless", "perfect", "clean", "pure", "flawless", "neat"],
   "Impetuous": ["Impulsive", "rash", "hasty", "sudden", "reckless", "spontaneous"],
   "Improvised": ["Unplanned", "spontaneous", "invented", "makeshift", "extemporaneous", "concocted", "scripted", "rehearsed"],
-  "Incessant": ["Constant", "non-stop", "continuous", "unceasing", "endless", "persistent"],
+  "Incessant": ["Constant", "non-stop", "continuous", "unceasing", "endless", "persistent", "continuing", "without stopping"],
   "Incidence": ["Rate", "occurrence", "frequency", "event", "instance", "amount"],
-  "Incisive": ["Sharp", "keen", "cutting", "acute", "penetrating", "analytical"],
-  "Inept": ["Clumsy", "unskilled", "incompetent", "awkward", "useless", "unfit"],
+  "Incisive": ["Sharp", "keen", "cutting", "acute", "penetrating", "analytical", "intelligent", "observant", "insightful", "thoughtful", "clear-thinking"],
+  "Inept": ["Clumsy", "unskilled", "incompetent", "awkward", "useless", "unfit", "no skill", "incompetence"],
   "Infiltration": ["Penetration", "entry", "access", "sneaking", "invasion", "pervade", "passing", "through"],
   "Innocuous": ["Harmless", "safe", "innocent", "inoffensive", "mild", "bland"],
   "Inoculate": ["Vaccinate", "immunize", "protect", "inoculation", "inject", "prevent"],
-  "Insidious": ["Treacherous", "subtle", "harmful", "deceitful", "sneaky", "dangerous"],
+  "Insidious": ["Treacherous", "subtle", "harmful", "deceitful", "sneaky", "dangerous", "deceiving", "deceitful", "sneaking"],
   "Insipid": ["Tasteless", "dull", "bland", "boring", "uninteresting", "flat"],
   "Insure": ["Protect", "guarantee", "cover", "secure", "compensate", "policy"],
   "Integrity": ["Honesty", "wholeness", "morality", "unity", "completeness", "ethics"],
@@ -139,13 +150,14 @@ document.addEventListener('DOMContentLoaded', () => {
   "Inundate": ["Flood", "overwhelm", "swamp", "cover", "overflow", "deluge"],
   "Irate": ["Angry", "furious", "enraged", "mad", "incensed", "provoked"],
   "Labyrinthine": ["Complicated", "maze-like", "twisting", "confusing", "complex", "winding", "labyrinth"],
-  "Lament": ["Mourn", "grieve", "regret", "sorrow", "weep", "wail", "grief"],
-  "Lauded": ["Praised", "acclaimed", "honored", "admired", "extolled", "celebrated"],
+  "Lament": ["Mourn", "grieve", "regret", "sorrow", "weep", "wail", "grief", "grieving"],
+  "Lauded": ["Praised", "acclaimed", "honored", "admired", "extolled", "celebrated", "praise"],
   "Lethargic": ["Sluggish", "tired", "lazy", "slow", "inactive", "sleepy"],
   "Linguistics": ["Language", "study", "structure", "grammar", "speech", "phonetics"],
-  "Liquidation": ["Sell off", "close", "convert", "cash", "eliminate", "dissolve"],
-  "Lucrative": ["Profitable", "gainful", "moneymaking", "rewarding", "fruitful", "paying"],
+  "Liquidation": ["Sell off", "close", "convert", "cash", "eliminate", "dissolve", "selling", "closing", "getting rid of"],
+  "Lucrative": ["Profitable", "gainful", "moneymaking", "rewarding", "fruitful", "paying", "profit", "profitable", "money"],
   "Magnanimous": ["Generous", "noble", "forgiving", "big-hearted", "benevolent", "high-minded"],
+  "Mundane": ["Ordinary", "common", "dull", "routine", "everyday", "prosaic", "boring", "usual", "normal"],
   "Mitigate": ["Lessen", "reduce", "relieve", "soften", "alleviate", "moderate"],
   "Morose": ["Gloomy", "sullen", "sad", "ill-tempered", "depressed", "sour"],
   "Nebulous": ["Vague", "cloudy", "unclear", "hazy", "ill-defined", "shapeless"],
@@ -155,43 +167,46 @@ document.addEventListener('DOMContentLoaded', () => {
   "Panacea": ["Cure-all", "remedy", "solution", "fix", "universal", "elixir"],
   "Penchant": ["Liking", "tendency", "fondness", "taste", "preference", "inclination"],
   "Percolate": ["Filter", "drip", "spread", "penetrate", "seep", "brew"],
-  "Perennially": ["Constantly", "year after year", "enduringly", "permanently", "always", "regularly"],
+  "Perennially": ["Constantly", "year after year", "enduringly", "permanently", "always", "regularly", "continous", "forever"],
   "Perfunctory": ["Routine", "automatic", "careless", "superficial", "indifferent", "mechanical"],
   "Perpetual": ["Eternal", "constant", "never-ending", "continuous", "permanent", "lasting"],
   "Piety": ["Devotion", "religious", "reverence", "holiness", "faith", "dutifulness"],
   "Phlegmatic": ["Calm", "unemotional", "stoic", "apathetic", "sluggish", "composed", "unexcitable", "tranquil", "tranquility"],
   "Philanthropic": ["Charitable", "generous", "benevolent", "altruistic", "humanitarian", "giving", "donate", "helpful", "compassionate", "kind", "unselfish"],
-  "Pivotal": ["Critical", "central", "crucial", "turning point", "essential", "vital"],
+  "Pivotal": ["Critical", "central", "crucial", "turning point", "essential", "vital", "important", "main"],
   "Postulate": ["Assume", "suggest", "claim", "theory", "propose", "posit"],
   "Precedence": ["Priority", "superiority", "rank", "importance", "preference", "first"],
-  "Prejudice": ["Bias", "unfairness", "intolerance", "discrimination", "preconceived judgment", "dislike"],
+  "Prejudice": ["Bias", "unfairness", "intolerance", "discrimination", "preconceived judgment", "dislike", "judgment", "preconceived", "preconceived opinion"],
   "Profound": ["Deep", "intense", "great", "insightful", "significant", "extreme"],
   "Progenitor": ["Ancestor", "founder", "parent", "origin", "forefather", "predecessor"],
   "Proponent": ["Supporter", "advocate", "promoter", "backer", "champion", "defender"],
   "Prudent": ["Wise", "careful", "cautious", "sensible", "practical", "discreet"],
-  "Querulous": ["Complaining", "whining", "peevish", "irritable", "grumpy", "fretful"],
+  "Querulous": ["Complaining", "whining", "peevish", "irritable", "grumpy", "fretful", "petulant", "complain", "whiny", "whine"],
   "Rampant": ["Unchecked", "widespread", "uncontrolled", "flourishing", "violent", "spreading"],
-  "Rancor": ["Bitterness", "hatred", "resentment", "malice", "spite", "hostility"],
-  "Reclusive": ["Isolated", "withdrawn", "solitary", "hermit", "secluded", "antisocial"],
+  "Rancor": ["Bitterness", "hatred", "resentment", "malice", "spite", "hostility", "hating", "hate"],
+  "Reclusive": ["Isolated", "withdrawn", "solitary", "hermit", "secluded", "antisocial", "shut away"],
   "Relegate": ["Downgrade", "demote", "assign", "banish", "lower", "transfer"],
   "Relinquish": ["Give up", "abandon", "surrender", "release", "yield", "resign"],
   "Reticent": ["Quiet", "reserved", "silent", "shy", "uncommunicative", "secretive"],
-  "Riveting": ["Fascinating", "gripping", "absorbing", "compelling", "engrossing", "exciting"],
+  "Riveting": ["Fascinating", "gripping", "absorbing", "compelling", "engrossing", "exciting", "excite", "interesting"],
   "Rudimentary": ["Basic", "elementary", "primitive", "simple", "undeveloped", "fundamental"],
-  "Sobriety": ["Serious", "sober", "temperance", "clearness", "solemnity", "abstinence"],
+  "Sagacity": ["Wisdom", "shrewdness", "insight", "judgment", "sagacious", "wise", "smart"],
+  "Surreptitious": ["Secret", "sneaky", "stealthy", "covert", "hidden", "clandestine", "undercover", "quiet", "secretly", "secrecy"],
+  "Sobriety": ["Serious", "sober", "temperance", "clearness", "solemnity", "abstinence", "peaceful", "calm", "seriousness"],
   "Sparse": ["Scanty", "scattered", "meager", "dispersed", "thin", "few"],
   "Spurious": ["Fake", "false", "counterfeit", "bogus", "invalid", "phony"],
   "Squander": ["Waste", "misuse", "spend", "dissipate", "throw away", "lavish"],
-  "Stagnant": ["Still", "motionless", "foul", "inactive", "standing", "sluggish"],
+  "Stagnant": ["Still", "motionless", "foul", "inactive", "standing", "sluggish", "constant", "not moving"],
   "Superfluous": ["Unnecessary", "extra", "surplus", "excessive", "redundant", "spare"],
   "Supplemental": ["Additional", "extra", "added", "auxiliary", "supporting", "complementary"],
-  "Symbiotic": ["Mutually beneficial", "cooperative", "interdependent", "relationship", "shared", "joint"],
+  "Symbiotic": ["Mutually beneficial", "cooperative", "interdependent", "relationship", "shared", "joint", "both", "mutual"],
   "Synopsis": ["Summary", "outline", "overview", "abstract", "digest", "review"],
-  "Tacitly": ["Silently", "implicitly", "understood", "unspoken", "agreed", "hinted"],
+  "Tacitly": ["Silently", "implicitly", "understood", "unspoken", "agreed", "hinted", "silent", "implied"],
   "Tangible": ["Touchable", "real", "concrete", "physical", "palpable", "substantial", "can be touched", "can be felt"],
-  "Tapestry": ["Fabric", "complex", "weaving", "design", "pattern", "textile"],
+  "Tapestry": ["Fabric", "complex", "weaving", "design", "pattern", "textile", "texture"],
   "Taxing": ["Demanding", "difficult", "exhausting", "burdensome", "tiring", "stressful"],
-  "Tenacity": ["Persistence", "determination", "grip", "strength", "stubbornness", "resolve"],
+  "Tenacity": ["Persistence", "determination", "grip", "strength", "stubbornness", "resolve", "not giving up", "holding on", "determined"],
+  "Tenacious": ["Persistent", "determined", "grip", "strength", "stubbornness", "resolve", "not giving up", "holding on", "stubborn", "determination"],
   "Terse": ["Brief", "short", "abrupt", "concise", "curt", "snappy"],
   "Tirade": ["Rant", "diatribe", "outburst", "harangue", "lecture", "ranting", "loud", "angry", "speech"],
   "Toil": ["Work", "labor", "struggle", "effort", "exhaust", "drudgery"],
@@ -199,24 +214,25 @@ document.addEventListener('DOMContentLoaded', () => {
   "Turpitude": ["Wickedness", "depravity", "corruption", "evil", "vile", "immorality"],
   "Ubiquitously": ["Everywhere", "universally", "commonly", "omnipresently", "all over", "widespread", "common"],
   "Ultimatum": ["Demand", "final", "threat", "condition", "warning", "last offer"],
-  "Unionize": ["Organize", "join", "labor", "association", "workers", "collective"],
+  "Unionize": ["Organize", "join", "labor", "association", "workers", "collective", "congregate", "congregation", "together", "unite"],
   "Unpretentious": ["Modest", "simple", "humble", "plain", "natural", "genuine"],
   "Untrammeled": ["Unrestricted", "free", "unhampered", "loose", "unconfined", "unhindered"],
-  "Vacillate": ["Waver", "hesitate", "fluctuate", "oscillate", "indecisive", "sway"],
+  "Vacillate": ["Waver", "hesitate", "fluctuate", "oscillate", "indecisive", "sway", "hesitant", "indecision"],
   "Venerate": ["Respect", "worship", "revere", "honor", "admire", "esteem"],
   "Vexing": ["Annoying", "irritating", "troubling", "worrying", "disturbing", "bothersome", "annoy"],
   "Vilify": ["Attack", "abuse", "slander", "malign", "defame", "criticize"],
-  "Vindicate": ["Clear", "justify", "defend", "acquit", "prove right", "absolve"],
+  "Vindicate": ["Clear", "defend", "acquit", "prove right", "absolve", "exonerate", "justify", "prove", "fix"],
   "Visage": ["Face", "appearance", "countenance", "look", "expression", "features"],
   "Vociferous": ["Loud", "noisy", "vocal", "shouting", "clamorous", "outspoken"],
-  "Volatile": ["Unstable", "explosive", "changeable", "unpredictable", "evaporative", "erratic"],
-  "Zenith": ["Peak", "top", "summit", "height", "pinnacle", "climax"],
+  "Volatile": ["Unstable", "explosive", "changeable", "unpredictable", "evaporative", "erratic", "change"],
+  "Zenith": ["Peak", "top", "summit", "height", "pinnacle", "climax", "successful", "best", "highest"],
   "Zephyr": ["Breeze", "wind", "gentle", "soft", "light", "air", "Cotton", "small", "lightweight", "soft fabric", "clothing"]
 };
 
 var NO = document.getElementById('WRONG');
 var RIGHT = document.getElementById('GOOD');
 var numofWords = document.getElementById('numWords');
+var streak = document.getElementById('streak');
 
 // MOBILE SUPPORT
 document.addEventListener("click", function (e) {
@@ -241,8 +257,6 @@ function fade(element) {
     }, 300); // how long it stays fully visible
 }
 
-
-
     const guessInput = document.getElementById("guess");
     const placeholder = document.getElementById("placeholder");
 
@@ -250,7 +264,6 @@ function fade(element) {
       console.error("Missing DOM elements: #guess or #placeholder not found.");
       return; 
     }
-
     let currentWord = "";
 
     function incorrectAudio() {
@@ -279,7 +292,7 @@ function fade(element) {
       placeholder.textContent = currentWord;
       console.log('New word:', currentWord);
     }
-
+    
     window.getNewWord = getNewWord;
 
     document.addEventListener('keydown', function(event) {
@@ -306,15 +319,27 @@ function fade(element) {
           guessInput.value = "";
           return;
         }
-
         // match ignoring case and allowing words/phrases
         const user = userInput.toLowerCase();
         const isCorrect = keywordsForWord.some(k =>
             user.includes(k.toLowerCase())
         );
         if (isCorrect) {
-  numofWords.textContent = `${parseInt(numofWords.textContent) + 1} words correct`;
-  const chance2 = Math.random();
+          const chance2 = Math.random();
+          numofWords.textContent = `${parseInt(numofWords.textContent) + 1} words correct`;
+            const currentStreakText = streak.textContent.split(': ')[1];
+            let newStreakCount = parseInt(currentStreakText) + 1;
+            streak.textContent = `Streak: ${newStreakCount}`;
+            if (newStreakCount === 5) {
+                streak1Music.currentTime = 0;
+                streak1Music.play().catch(e => console.warn("Audio play suppressed:", e));
+            } else if (newStreakCount === 10) {
+                streak2Music.currentTime = 0;
+                streak2Music.play().catch(e => console.warn("Audio play suppressed:", e));
+            } else if (newStreakCount === 15) {
+                streak3Music.currentTime = 0;
+                streak3Music.play().catch(e => console.warn("Audio play suppressed:", e));
+            }
   
   // 30% chance to play the ANIME AHH sound
   if (chance2 < 0.3) {
@@ -329,7 +354,7 @@ function fade(element) {
   getNewWord();
 } else {
   const chance = Math.random();
-
+  streak.textContent = `Streak: 0`;
   // 30% chance of vine boom, 40% OF FAHHHH!
   if (chance < 0.3) {
     incorrectAudio2();
