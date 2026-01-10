@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
   "Boorish": ["Rude", "rough", "insensitive", "bad-mannered", "coarse", "uncouth"],
   "Broad": ["Wide", "large", "general", "vast", "extensive", "open", "big"],
   "Cacophony": ["Noise", "discord", "harshness", "racket", "din", "clamor", "harsh", "loud", "noisy"],
-  "Calamitous": ["Disastrous", "catastrophic", "tragic", "devastating", "ruinous", "fatal"],
+  "Calamitous": ["Disastrous", "catastrophic", "tragic", "devastating", "ruinous", "fatal", "dangerous"],
   "Candor": ["Honesty", "frankness", "openness", "truthfulness", "sincerity", "directness", "honest", "truth"],
   "Cascade": ["Waterfall", "pour", "flow", "series", "succession", "tumble"],
   "Catalog": ["List", "record", "register", "inventory", "classify", "organize"],
